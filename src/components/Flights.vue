@@ -33,7 +33,7 @@ export default {
   },
 created() {
     navigator.geolocation.getCurrentPosition(position => {
-      fetch(`http://localhost:3000/api/AircraftList.json?lat=${position.coords.latitude}&lng=${position.coords.longitude}&fDstL=0&fDstU=100`, { method: "GET" })
+      fetch(`/VirtualRadar/AircraftList.json?lat=${position.coords.latitude}&lng=${position.coords.longitude}&fDstL=0&fDstU=100`, { method: "GET" })
       .then(res => res.json())
       .then(data => {
         this.flights = flights = data.acList.map(item => {
