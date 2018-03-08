@@ -26,7 +26,6 @@ export default {
     if (!!flights) {
       this.flight = flights.find(flight => flight.flightId == this.id);
     }
-    console.log(flights);
   }
 };
 </script>

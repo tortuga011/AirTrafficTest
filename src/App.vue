@@ -2,7 +2,7 @@
   <div id="app">
     <Navbar/>
     <div class="container">
-      <transition name="rout-animation" enter-active-class="animated fadeInLeft" leave-active-class="animated fadeOutRightBig" mode="out-in">
+      <transition name="route-animation" enter-active-class="animated fadeInLeft" leave-active-class="animated fadeOutRightBig" mode="out-in">
         <router-view/>
       </transition>
     </div>

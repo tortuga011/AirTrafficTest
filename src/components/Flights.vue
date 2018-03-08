@@ -4,6 +4,9 @@
       <li class="collection-header">
         <h4>Flights</h4>
       </li>
+      <li v-if="loading">
+        Loading...
+      </li>
       <li v-for="flight in flights" 
       :key="flight.flightId" 
       class="collection-item">
@@ -28,10 +31,12 @@ export default {
   name: 'flights',
   data () {
     return {
-      flights: []
+      flights: [],
+      loading: true
     }
   },
-created() {
+  created() {
+    this.flights = flights;
     navigator.geolocation.getCurrentPosition(position => {
       fetch(`/VirtualRadar/AircraftList.json?lat=${position.coords.latitude}&lng=${position.coords.longitude}&fDstL=0&fDstU=100`, { method: "GET" })
       .then(res => res.json())
@@ -48,7 +53,8 @@ created() {
             logo: `https://logo.clearbit.com/${item.Op.replace(' ', '').toLowerCase()}.com?s=64`
           }
         }).sort((a, b) => a.altitude  < b.altitude);
-      });
+      })
+      .finally(() => this.loading = false)
     },
     error => { 
       if (error.code == error.PERMISSION_DENIED)
